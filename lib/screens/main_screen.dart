@@ -15,6 +15,7 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        backgroundColor: Colors.white,
         extendBody: true,
         body: IndexedStack(
           index: selectedBottomNav,
