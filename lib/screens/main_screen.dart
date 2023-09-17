@@ -1,7 +1,9 @@
 import 'dart:ui';
+import 'package:cypto_pulse/bloc/home/home_bloc.dart';
 import 'package:cypto_pulse/screens/home_screen.dart';
 import 'package:cypto_pulse/screens/market_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -57,7 +59,10 @@ class _MainScreenState extends State<MainScreen> {
 
   List<Widget> getScreen() {
     return [
-      const HomeScreen(),
+      BlocProvider(
+        create: (context) => HomeBloc(),
+        child: const HomeScreen(),
+      ),
       const MarketScreen(),
     ];
   }

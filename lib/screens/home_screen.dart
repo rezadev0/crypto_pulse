@@ -1,12 +1,28 @@
+import 'package:cypto_pulse/bloc/home/home_bloc.dart';
+import 'package:cypto_pulse/bloc/home/home_event.dart';
+import 'package:cypto_pulse/bloc/home/home_state.dart';
 import 'package:cypto_pulse/widgets/asset_badge_widget.dart';
+import 'package:cypto_pulse/widgets/coin_info_item_widget.dart';
 import 'package:cypto_pulse/widgets/credit_card_widget.dart';
 import 'package:cypto_pulse/widgets/notification_bing_widget.dart';
 import 'package:cypto_pulse/widgets/shimmer_card_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  @override
+  void initState() {
+    BlocProvider.of<HomeBloc>(context).add(HomeResponseEvent());
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,84 +49,102 @@ class HomeScreen extends StatelessWidget {
           ),
         ),
       ),
-      body: CustomScrollView(
-        physics: const BouncingScrollPhysics(),
-        slivers: [
-          SliverToBoxAdapter(
-            child: Padding(
-              padding: EdgeInsets.only(top: 19.w),
-              child: _getAllAssetWidgets(),
-            ),
-          ),
-          SliverToBoxAdapter(
-            child: Padding(
-              padding: EdgeInsets.only(
-                top: 23.0.h,
-                left: 21.0.w,
+      body: BlocBuilder<HomeBloc, HomeState>(
+        builder: (context, state) {
+          return CustomScrollView(
+            physics: const BouncingScrollPhysics(),
+            slivers: [
+              SliverToBoxAdapter(
+                child: Padding(
+                  padding: EdgeInsets.only(top: 19.w),
+                  child: _getAllAssetWidgets(),
+                ),
               ),
-              child: const Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(
-                    width: double.infinity,
+              SliverToBoxAdapter(
+                child: Padding(
+                  padding: EdgeInsets.only(
+                    top: 23.0.h,
+                    left: 21.0.w,
                   ),
-                  Text(
-                    '\$98,271.00',
-                    style: TextStyle(
-                      color: Color(0xFF232637),
-                      fontSize: 30,
-                      fontWeight: FontWeight.w800,
-                    ),
+                  child: const Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(
+                        width: double.infinity,
+                      ),
+                      Text(
+                        '\$21,271.00',
+                        style: TextStyle(
+                          color: Color(0xFF232637),
+                          fontSize: 30,
+                          fontWeight: FontWeight.w800,
+                        ),
+                      ),
+                      SizedBox(height: 5),
+                      Text(
+                        '+173% all time',
+                        style: TextStyle(
+                          color: Color(0xFF03B78C),
+                          fontSize: 12,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ],
                   ),
-                  SizedBox(height: 5),
-                  Text(
-                    '+173% all time',
-                    style: TextStyle(
-                      color: Color(0xFF03B78C),
-                      fontSize: 12,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                ],
+                ),
               ),
-            ),
-          ),
-          SliverToBoxAdapter(
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.w),
-              child: const CreditCard(),
-            ),
-          ),
-          SliverAppBar(
-            backgroundColor: Colors.white,
-            pinned: true,
-            elevation: 0,
-            toolbarHeight: 35.h,
-            flexibleSpace: Padding(
-              padding: EdgeInsets.only(left: 21.w, right: 20.w),
-              child: Row(
-                children: [
-                  const Text(
-                    'Crypto Assets',
-                    style: TextStyle(
-                      color: Color(0xFF232637),
-                      fontSize: 18,
-                      fontWeight: FontWeight.w800,
-                    ),
-                  ),
-                  const Spacer(),
-                  Image.asset('assets/images/add_icon.png'),
-                ],
+              SliverToBoxAdapter(
+                child: Padding(
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.w),
+                  child: const CreditCard(),
+                ),
               ),
-            ),
-          ),
-          SliverList.builder(
-            itemBuilder: (context, index) => const ShimmerCard(),
-          ),
-          SliverPadding(
-            padding: EdgeInsets.only(bottom: 30.w),
-          ),
-        ],
+              SliverAppBar(
+                backgroundColor: Colors.white,
+                pinned: true,
+                elevation: 0,
+                toolbarHeight: 35.h,
+                flexibleSpace: Padding(
+                  padding: EdgeInsets.only(left: 21.w, right: 20.w),
+                  child: Row(
+                    children: [
+                      const Text(
+                        'Crypto Assets',
+                        style: TextStyle(
+                          color: Color(0xFF232637),
+                          fontSize: 18,
+                          fontWeight: FontWeight.w800,
+                        ),
+                      ),
+                      const Spacer(),
+                      Image.asset('assets/images/add_icon.png'),
+                    ],
+                  ),
+                ),
+              ),
+              if (state is HomeLoadingState) ...[
+                SliverList.builder(
+                  itemBuilder: (context, index) => const ShimmerCard(),
+                ),
+              ],
+              if(state is HomeResponseState)...[
+                 state.coinList.fold(
+                  (l) => SliverToBoxAdapter(
+                    child: Text(l),
+                  ),
+                  (r) => CoinInfoItem(
+                    coinList: r,
+                    length: r.length - 85,
+                  ),
+                )
+              ],
+              SliverPadding(
+                padding: EdgeInsets.only(bottom: 30.w),
+              ),
+            ],
+          );
+        },
       ),
     );
   }
