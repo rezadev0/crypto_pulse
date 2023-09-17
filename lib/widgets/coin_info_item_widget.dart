@@ -1,4 +1,5 @@
 import 'package:cypto_pulse/data/models/coin.dart';
+import 'package:cypto_pulse/widgets/line_chart_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -63,9 +64,9 @@ class CoinInfoItem extends StatelessWidget {
               ),
               SizedBox(width: 10.w),
               Expanded(
-                child: Container(
-                  height: 40,
-                  color: Colors.amber,
+                child: LineChart(
+                  coinpriceList: coinList[index].price.cast<double>(),
+                  isIncreased: coinList[index].priceChangePercentage_24h > 0,
                 ),
               ),
               Column(
