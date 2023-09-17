@@ -65,7 +65,7 @@ class CoinInfoItem extends StatelessWidget {
               SizedBox(width: 10.w),
               Expanded(
                 child: LineChart(
-                  coinpriceList: coinList[index].price.cast<double>(),
+                  coinpriceList: coinList[index].filterClosePrices,
                   isIncreased: coinList[index].priceChangePercentage_24h > 0,
                 ),
               ),

@@ -1,12 +1,44 @@
-class Coin{
+class Coin {
   String id;
   String symbol;
   String image;
   String name;
-  var currentPrice;
+  num currentPrice;
   double priceChangePercentage_24h;
   List price;
   int rank;
+
+  List<double> get filterClosePrices {
+    //! result list is a list that contain of price coin without closeprice and duplicate valuse//!
+
+    List<double> result = [];
+    List<double> priceDiffrences = [];
+
+    //* this loop result to a list of price diffrences:
+
+    for (var i = 1; i < price.length; i++) {
+      priceDiffrences.add((price[i] - price[i - 1]).abs());
+    }
+
+    //? use reduse method to get average telorance:
+
+    double averageTolerance =
+        priceDiffrences.reduce((value, element) => (value + element)) /
+            priceDiffrences.length;
+    // add first price to list
+    result.add(price[0].toDouble());
+
+    //! add prices that diffrences greater than average tolerance:
+
+    for (int i = 1; i < price.length; i++) {
+      double diff = (price[i] - result.last).abs();
+      if (diff >= averageTolerance && !result.contains(price[i])) {
+        result.add(price[i].toDouble());
+      }
+    }
+    return result;
+  }
+
   Coin({
     required this.id,
     required this.symbol,
