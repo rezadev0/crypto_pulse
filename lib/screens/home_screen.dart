@@ -1,6 +1,7 @@
 import 'package:cypto_pulse/widgets/asset_badge_widget.dart';
 import 'package:cypto_pulse/widgets/credit_card_widget.dart';
 import 'package:cypto_pulse/widgets/notification_bing_widget.dart';
+import 'package:cypto_pulse/widgets/shimmer_card_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -103,9 +104,12 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
           ),
+          SliverList.builder(
+            itemBuilder: (context, index) => const ShimmerCard(),
+          ),
           SliverPadding(
             padding: EdgeInsets.only(bottom: 30.w),
-          )
+          ),
         ],
       ),
     );

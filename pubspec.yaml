@@ -31,7 +31,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_screenutil: ^5.9.0
-  
+  shimmer: ^3.0.0
 
 
   # The following adds the Cupertino Icons font to your application.
