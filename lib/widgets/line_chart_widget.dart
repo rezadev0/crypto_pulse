@@ -32,15 +32,15 @@ class LineChart extends StatelessWidget {
           pointColorMapper: (datum, index) {
             if (isIncreased) {
               if (index >= 10 && index <= coinpriceList.length - 10) {
-                return Colors.green;
+                return const Color(0xff16FF00);
               } else {
-                return Colors.green.withOpacity(0.1);
+                return const Color(0xffA6FF96);
               }
             } else {
               if (index >= 10 && index <= coinpriceList.length - 10) {
-                return Colors.red;
+                return const Color(0xffF94C10);
               } else {
-                return Colors.red.withOpacity(0.1);
+                return const Color(0xffFFCAC8);
               }
             }
           },

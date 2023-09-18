@@ -25,8 +25,8 @@ class CoinInfoItem extends StatelessWidget {
             boxShadow: [
               BoxShadow(
                 color: coinList[index].priceChangePercentage_24h > 0
-                    ? Colors.green
-                    : Colors.red,
+                    ? const Color(0xffA6FF96)
+                    : const Color(0xffF94C10),
                 blurRadius: 5,
                 blurStyle: BlurStyle.outer,
               )
