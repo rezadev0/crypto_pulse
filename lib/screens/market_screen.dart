@@ -8,6 +8,7 @@ import 'package:cypto_pulse/widgets/search_coin_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
 
 class MarketScreen extends StatefulWidget {
   const MarketScreen({super.key});
@@ -46,35 +47,41 @@ class _MarketScreenState extends State<MarketScreen> {
       ),
       body: BlocBuilder<HomeBloc, HomeState>(
         builder: (context, state) {
-          return CustomScrollView(
-            slivers: [
-              const SearchCoin(),
-              _getLivePriceTitle(),
-              if (state is HomeResponseState) ...[
-                state.coinList.fold(
-                  (l) => SliverToBoxAdapter(
-                    child: Text(l),
+          return LiquidPullToRefresh(
+            onRefresh: () async {
+              BlocProvider.of<HomeBloc>(context).add(HomeResponseEvent());
+            },
+            child: CustomScrollView(
+              physics: const BouncingScrollPhysics(),
+              slivers: [
+                const SearchCoin(),
+                _getLivePriceTitle(),
+                if (state is HomeResponseState) ...[
+                  state.coinList.fold(
+                    (l) => SliverToBoxAdapter(
+                      child: Text(l),
+                    ),
+                    (r) => LivePriceBadge(
+                      coinList: r,
+                    ),
                   ),
-                  (r) => LivePriceBadge(
-                    coinList: r,
-                  ),
-                ),
-              ],
-              if (state is HomeResponseState) ...[
-                state.coinList.fold(
-                  (l) => SliverToBoxAdapter(
-                    child: Text(l),
-                  ),
-                  (r) => CoinInfoItem(
-                    coinList: r,
-                    length: r.length - 50,
-                  ),
+                ],
+                if (state is HomeResponseState) ...[
+                  state.coinList.fold(
+                    (l) => SliverToBoxAdapter(
+                      child: Text(l),
+                    ),
+                    (r) => CoinInfoItem(
+                      coinList: r,
+                      length: r.length - 50,
+                    ),
+                  )
+                ],
+                SliverPadding(
+                  padding: EdgeInsets.only(bottom: 45.w),
                 )
               ],
-              SliverPadding(
-                padding: EdgeInsets.only(bottom: 45.w),
-              )
-            ],
+            ),
           );
         },
       ),
