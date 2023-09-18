@@ -63,7 +63,10 @@ class _MainScreenState extends State<MainScreen> {
         create: (context) => HomeBloc(),
         child: const HomeScreen(),
       ),
-      const MarketScreen(),
+      BlocProvider(
+        create: (context) => HomeBloc(),
+        child: const MarketScreen(),
+      ),
     ];
   }
 }

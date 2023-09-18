@@ -1,10 +1,27 @@
+import 'package:cypto_pulse/bloc/home/home_bloc.dart';
+import 'package:cypto_pulse/bloc/home/home_event.dart';
+import 'package:cypto_pulse/bloc/home/home_state.dart';
+import 'package:cypto_pulse/widgets/coin_info_item_widget.dart';
+import 'package:cypto_pulse/widgets/live_price_badge_widget.dart';
 import 'package:cypto_pulse/widgets/notification_bing_widget.dart';
 import 'package:cypto_pulse/widgets/search_coin_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class MarketScreen extends StatelessWidget {
+class MarketScreen extends StatefulWidget {
   const MarketScreen({super.key});
+
+  @override
+  State<MarketScreen> createState() => _MarketScreenState();
+}
+
+class _MarketScreenState extends State<MarketScreen> {
+  @override
+  void initState() {
+    BlocProvider.of<HomeBloc>(context).add(HomeResponseEvent());
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,11 +44,39 @@ class MarketScreen extends StatelessWidget {
           ),
         ),
       ),
-      body: CustomScrollView(
-        slivers: [
-          const SearchCoin(),
-          _getLivePriceTitle(),
-        ],
+      body: BlocBuilder<HomeBloc, HomeState>(
+        builder: (context, state) {
+          return CustomScrollView(
+            slivers: [
+              const SearchCoin(),
+              _getLivePriceTitle(),
+              if (state is HomeResponseState) ...[
+                state.coinList.fold(
+                  (l) => SliverToBoxAdapter(
+                    child: Text(l),
+                  ),
+                  (r) => LivePriceBadge(
+                    coinList: r,
+                  ),
+                ),
+              ],
+              if (state is HomeResponseState) ...[
+                state.coinList.fold(
+                  (l) => SliverToBoxAdapter(
+                    child: Text(l),
+                  ),
+                  (r) => CoinInfoItem(
+                    coinList: r,
+                    length: r.length - 50,
+                  ),
+                )
+              ],
+              SliverPadding(
+                padding: EdgeInsets.only(bottom: 45.w),
+              )
+            ],
+          );
+        },
       ),
     );
   }
