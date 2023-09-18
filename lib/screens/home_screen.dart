@@ -128,8 +128,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   itemBuilder: (context, index) => const ShimmerCard(),
                 ),
               ],
-              if(state is HomeResponseState)...[
-                 state.coinList.fold(
+              if (state is HomeResponseState) ...[
+                state.coinList.fold(
                   (l) => SliverToBoxAdapter(
                     child: Text(l),
                   ),
@@ -140,7 +140,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 )
               ],
               SliverPadding(
-                padding: EdgeInsets.only(bottom: 30.w),
+                padding: EdgeInsets.only(bottom: 45.w),
               ),
             ],
           );
