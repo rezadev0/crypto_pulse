@@ -8,7 +8,6 @@ import 'package:cypto_pulse/widgets/search_coin_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
 
 class MarketScreen extends StatefulWidget {
   const MarketScreen({super.key});
@@ -47,7 +46,7 @@ class _MarketScreenState extends State<MarketScreen> {
       ),
       body: BlocBuilder<HomeBloc, HomeState>(
         builder: (context, state) {
-          return LiquidPullToRefresh(
+          return RefreshIndicator(
             onRefresh: () async {
               BlocProvider.of<HomeBloc>(context).add(HomeResponseEvent());
             },
