@@ -55,6 +55,12 @@ class _MarketScreenState extends State<MarketScreen> {
               slivers: [
                 const SearchCoin(),
                 _getLivePriceTitle(),
+                if (state is HomeResultSearchState) ...[
+                  CoinInfoItem(
+                    coinList: state.resultCoinList,
+                    length: state.resultCoinList.length,
+                  )
+                ],
                 if (state is HomeResponseState) ...[
                   state.coinList.fold(
                     (l) => SliverToBoxAdapter(
@@ -67,14 +73,13 @@ class _MarketScreenState extends State<MarketScreen> {
                 ],
                 if (state is HomeResponseState) ...[
                   state.coinList.fold(
-                    (l) => SliverToBoxAdapter(
-                      child: Text(l),
-                    ),
-                    (r) => CoinInfoItem(
-                      coinList: r,
-                      length: r.length - 50,
-                    ),
-                  )
+                      (l) => SliverToBoxAdapter(
+                            child: Text(l),
+                          ),
+                      (r) => CoinInfoItem(
+                            coinList: r,
+                            length: r.length - 50,
+                          ))
                 ],
                 SliverPadding(
                   padding: EdgeInsets.only(bottom: 45.w),

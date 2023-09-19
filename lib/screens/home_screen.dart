@@ -135,7 +135,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   (r) => CoinInfoItem(
                     coinList: r,
-                    length: r.length - 95,
+                    length: r.length - 85,
                   ),
                 )
               ],
