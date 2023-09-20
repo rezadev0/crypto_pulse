@@ -18,7 +18,7 @@ class SearchCoin extends StatelessWidget {
           width: 335.w,
           child: TextField(
             controller: textController,
-            onSubmitted: (value) {
+            onChanged: (value) {
               BlocProvider.of<HomeBloc>(context)
                   .add(HomeSearchEvent(query: textController.text));
             },
