@@ -4,6 +4,7 @@ import 'package:cypto_pulse/bloc/home/home_state.dart';
 import 'package:cypto_pulse/widgets/coin_info_item_widget.dart';
 import 'package:cypto_pulse/widgets/live_price_badge_widget.dart';
 import 'package:cypto_pulse/widgets/notification_bing_widget.dart';
+import 'package:cypto_pulse/widgets/rate_limiting_error_widget.dart';
 import 'package:cypto_pulse/widgets/search_coin_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -56,15 +57,24 @@ class _MarketScreenState extends State<MarketScreen> {
                 const SearchCoin(),
                 _getLivePriceTitle(),
                 if (state is HomeResultSearchState) ...[
-                  CoinInfoItem(
-                    coinList: state.resultCoinList,
-                    length: state.resultCoinList.length,
-                  )
+                  if (state.resultCoinList.isNotEmpty) ...[
+                    CoinInfoItem(
+                      coinList: state.resultCoinList,
+                      length: state.resultCoinList.length,
+                    ),
+                    ...[
+                      const SliverToBoxAdapter(
+                        child: Center(
+                          child: Text('coin not found'),
+                        ),
+                      )
+                    ]
+                  ],
                 ],
                 if (state is HomeResponseState) ...[
                   state.coinList.fold(
-                    (l) => SliverToBoxAdapter(
-                      child: Text(l),
+                    (l) => const SliverToBoxAdapter(
+                      child: Text(''),
                     ),
                     (r) => LivePriceBadge(
                       coinList: r,
@@ -72,10 +82,16 @@ class _MarketScreenState extends State<MarketScreen> {
                   ),
                 ],
                 if (state is HomeResponseState) ...[
-                  state.coinList.fold(
-                      (l) => SliverToBoxAdapter(
-                            child: Text(l),
-                          ),
+                  state.coinList.fold((l) {
+                    if (l ==
+                        'The request returned an invalid status code of 429.') {
+                      return const SliverToBoxAdapter(
+                        child: RateLimitingError(),
+                      );
+                    } else {
+                      return const SliverToBoxAdapter();
+                    }
+                  },
                       (r) => CoinInfoItem(
                             coinList: r,
                             length: r.length - 50,

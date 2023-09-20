@@ -5,6 +5,7 @@ import 'package:cypto_pulse/widgets/asset_badge_widget.dart';
 import 'package:cypto_pulse/widgets/coin_info_item_widget.dart';
 import 'package:cypto_pulse/widgets/credit_card_widget.dart';
 import 'package:cypto_pulse/widgets/notification_bing_widget.dart';
+import 'package:cypto_pulse/widgets/rate_limiting_error_widget.dart';
 import 'package:cypto_pulse/widgets/shimmer_card_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -130,9 +131,16 @@ class _HomeScreenState extends State<HomeScreen> {
               ],
               if (state is HomeResponseState) ...[
                 state.coinList.fold(
-                  (l) => SliverToBoxAdapter(
-                    child: Text(l),
-                  ),
+                  (l) {
+                    if (l ==
+                        'The request returned an invalid status code of 429.') {
+                      return const SliverToBoxAdapter(
+                        child: RateLimitingError(),
+                      );
+                    } else {
+                      return const SliverToBoxAdapter();
+                    }
+                  },
                   (r) => CoinInfoItem(
                     coinList: r,
                     length: r.length - 85,
