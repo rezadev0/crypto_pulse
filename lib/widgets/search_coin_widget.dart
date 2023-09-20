@@ -22,8 +22,11 @@ class SearchCoin extends StatelessWidget {
               BlocProvider.of<HomeBloc>(context)
                   .add(HomeSearchEvent(query: textController.text));
             },
-            onTapOutside: (event) =>
-                FocusManager.instance.primaryFocus?.unfocus(),
+            onTapOutside: (event) {
+              FocusManager.instance.primaryFocus?.unfocus();
+              textController.text = '';
+              BlocProvider.of<HomeBloc>(context).add(HomeResponseEvent());
+            },
             decoration: InputDecoration(
               prefixIcon: const Icon(
                 Icons.search,
