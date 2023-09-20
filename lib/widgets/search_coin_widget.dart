@@ -1,4 +1,7 @@
+import 'package:cypto_pulse/bloc/home/home_bloc.dart';
+import 'package:cypto_pulse/bloc/home/home_event.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SearchCoin extends StatelessWidget {
@@ -6,6 +9,7 @@ class SearchCoin extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final TextEditingController textController = TextEditingController();
     return SliverToBoxAdapter(
       child: Padding(
         padding: EdgeInsets.only(top: 16.w, right: 20.w, left: 20.w),
@@ -13,8 +17,18 @@ class SearchCoin extends StatelessWidget {
           height: 56.w,
           width: 335.w,
           child: TextField(
-            onTapOutside: (event) =>
-                FocusManager.instance.primaryFocus?.unfocus(),
+            controller: textController,
+            onSubmitted: (value) {
+              BlocProvider.of<HomeBloc>(context)
+                  .add(HomeSearchEvent(query: textController.text));
+              if (value == '') {
+                BlocProvider.of<HomeBloc>(context).add(HomeResponseEvent());
+              }
+            },
+            onTapOutside: (event) {
+              FocusManager.instance.primaryFocus?.unfocus();
+              textController.text = '';
+            },
             decoration: InputDecoration(
               prefixIcon: const Icon(
                 Icons.search,
