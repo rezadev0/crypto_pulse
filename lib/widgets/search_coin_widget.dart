@@ -18,14 +18,16 @@ class SearchCoin extends StatelessWidget {
           width: 335.w,
           child: TextField(
             controller: textController,
-            onChanged: (value) {
+            onSubmitted: (value) {
               BlocProvider.of<HomeBloc>(context)
                   .add(HomeSearchEvent(query: textController.text));
+              if (value == '') {
+                BlocProvider.of<HomeBloc>(context).add(HomeResponseEvent());
+              }
             },
             onTapOutside: (event) {
               FocusManager.instance.primaryFocus?.unfocus();
               textController.text = '';
-              BlocProvider.of<HomeBloc>(context).add(HomeResponseEvent());
             },
             decoration: InputDecoration(
               prefixIcon: const Icon(
