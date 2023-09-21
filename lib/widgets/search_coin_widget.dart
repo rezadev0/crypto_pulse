@@ -27,7 +27,6 @@ class SearchCoin extends StatelessWidget {
             },
             onTapOutside: (event) {
               FocusManager.instance.primaryFocus?.unfocus();
-              textController.text = '';
             },
             decoration: InputDecoration(
               prefixIcon: const Icon(
