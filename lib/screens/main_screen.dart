@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:cypto_pulse/bloc/home/home_bloc.dart';
+import 'package:cypto_pulse/bloc/home/home_event.dart';
 import 'package:cypto_pulse/screens/home_screen.dart';
 import 'package:cypto_pulse/screens/market_screen.dart';
 import 'package:flutter/material.dart';
@@ -13,6 +14,12 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   int selectedBottomNav = 0;
+  @override
+  void initState() {
+    BlocProvider.of<HomeBloc>(context).add(HomeResponseEvent());
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -61,14 +68,8 @@ class _MainScreenState extends State<MainScreen> {
 
   List<Widget> getScreen() {
     return [
-      BlocProvider(
-        create: (context) => HomeBloc(),
-        child: const HomeScreen(),
-      ),
-      BlocProvider(
-        create: (context) => HomeBloc(),
-        child: const MarketScreen(),
-      ),
+      const HomeScreen(),
+      const MarketScreen(),
     ];
   }
 }
