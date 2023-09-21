@@ -35,14 +35,16 @@ class _MainScreenState extends State<MainScreen> {
               elevation: 0,
               type: BottomNavigationBarType.fixed,
               currentIndex: selectedBottomNav,
-              items: const [
+              items: [
                 BottomNavigationBarItem(
                   label: 'Home',
-                  icon: Icon(Icons.home),
+                  icon: Image.asset('assets/images/home.png'),
+                  activeIcon: Image.asset('assets/images/home_active.png'),
                 ),
                 BottomNavigationBarItem(
                   label: 'Market',
-                  icon: Icon(Icons.account_balance_wallet),
+                  icon: Image.asset('assets/images/market.png'),
+                  activeIcon: Image.asset('assets/images/market_active.png'),
                 ),
               ],
               onTap: (value) {
