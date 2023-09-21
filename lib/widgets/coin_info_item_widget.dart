@@ -1,4 +1,5 @@
 import 'package:cypto_pulse/data/models/coin.dart';
+import 'package:cypto_pulse/widgets/cached_image_widget.dart';
 import 'package:cypto_pulse/widgets/line_chart_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -38,7 +39,7 @@ class CoinInfoItem extends StatelessWidget {
           ),
           child: Row(
             children: [
-              Image.network(coinList[index].image),
+              CachedImage(url: coinList[index].image),
               SizedBox(width: 11.w),
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
