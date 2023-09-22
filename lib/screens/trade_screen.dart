@@ -1,9 +1,19 @@
+import 'package:cypto_pulse/widgets/cached_image_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class TradeScreen extends StatelessWidget {
-  const TradeScreen({super.key});
-
+  const TradeScreen({
+    super.key,
+    required this.imageAddress,
+    required this.coinName,
+    required this.currentPrice,
+    required this.changePerDay,
+  });
+  final String imageAddress;
+  final String coinName;
+  final num currentPrice;
+  final double changePerDay;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -13,13 +23,14 @@ class TradeScreen extends StatelessWidget {
           centerTitle: true,
           backgroundColor: Colors.white,
           elevation: 0,
-          leading: const Icon(
-            Icons.arrow_back_ios,
+          leading: IconButton(
+            onPressed: () => Navigator.pop(context),
+            icon: const Icon(Icons.arrow_back_ios),
             color: Colors.black,
           ),
-          title: const Text(
-            'Ethereum',
-            style: TextStyle(
+          title: Text(
+            coinName,
+            style: const TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 20,
               color: Colors.black,
@@ -33,11 +44,12 @@ class TradeScreen extends StatelessWidget {
             SizedBox(
               height: 96.w,
               width: 96.w,
-              child: Image.asset('assets/images/coin.png'),
+              child: CachedImage(url: imageAddress),
             ),
-            const Text(
-              '\$2,827.00',
-              style: TextStyle(
+            SizedBox(height: 10.w),
+            Text(
+              '\$$currentPrice',
+              style: const TextStyle(
                 color: Color(0xFF232637),
                 fontSize: 30,
                 fontWeight: FontWeight.w800,
@@ -48,10 +60,10 @@ class TradeScreen extends StatelessWidget {
               children: [
                 Image.asset('assets/images/increase.png'),
                 const SizedBox(width: 5),
-                const Text(
-                  '8.74% (2,8%)',
+                Text(
+                  '$changePerDay%',
                   textAlign: TextAlign.right,
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Color(0xFF1CBF67),
                     fontSize: 12,
                     fontWeight: FontWeight.w400,
@@ -104,7 +116,7 @@ class TradeScreen extends StatelessWidget {
                   ClipRRect(
                     borderRadius: BorderRadius.circular(12),
                     child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () async {},
                       style: ElevatedButton.styleFrom(
                           backgroundColor: const Color(0xffD0F0C0),
                           minimumSize: Size(160.w, 56.w)),

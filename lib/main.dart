@@ -29,18 +29,17 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
-    return const ScreenUtilInit(
+    return ScreenUtilInit(
       splitScreenMode: true,
       minTextAdapt: true,
-      designSize: Size(375, 812),
+      designSize: const Size(375, 812),
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Crypto Pulse',
-        home: TradeScreen(),
-        // home: BlocProvider(
-        //   create: (context) => HomeBloc(),
-        //   child: const MainScreen(),
-        // ),
+        home: BlocProvider(
+          create: (context) => HomeBloc(),
+          child: const MainScreen(),
+        ),
       ),
     );
   }

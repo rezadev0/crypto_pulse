@@ -22,7 +22,12 @@ class CoinInfoItem extends StatelessWidget {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => const TradeScreen(),
+              builder: (context) => TradeScreen(
+                imageAddress: coinList[index].image,
+                coinName: coinList[index].name,
+                currentPrice: coinList[index].currentPrice,
+                changePerDay: coinList[index].priceChangePercentage_24h,
+              ),
             ),
           );
         },
