@@ -11,6 +11,7 @@ class LineChart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SfCartesianChart(
+      enableAxisAnimation: false,
       plotAreaBorderWidth: 0,
       primaryXAxis: NumericAxis(
         isVisible: false,
@@ -26,6 +27,7 @@ class LineChart extends StatelessWidget {
       ),
       series: [
         SplineSeries(
+          animationDuration: 0,
           dataSource: coinpriceList,
           xValueMapper: (value, index) => index,
           yValueMapper: (value, index) => value,
