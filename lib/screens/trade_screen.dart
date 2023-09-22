@@ -93,16 +93,24 @@ class _TradeScreenState extends State<TradeScreen> {
               ],
             ),
             SizedBox(height: 15.w),
-            const Row(
+            Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Text('7D'),
-                Text('1M'),
-                Text('3M'),
-                Text('6M'),
-                Text('1Y'),
+                Container(
+                  padding: const EdgeInsets.all(5),
+                  decoration: const ShapeDecoration(
+                    shape: CircleBorder(),
+                    color: Colors.blue,
+                  ),
+                  child: const Text('7D'),
+                ),
+                const Text('1M'),
+                const Text('3M'),
+                const Text('6M'),
+                const Text('1Y'),
               ],
             ),
+            const Spacer(),
             BlocBuilder<CandleBloc, CandleState>(
               builder: (context, state) {
                 if (state is CandleLoadingState) {
@@ -113,6 +121,7 @@ class _TradeScreenState extends State<TradeScreen> {
                   late List<Candle> candleList;
                   state.candleList.fold((l) {
                     errorMessage = l;
+                    return Text(errorMessage);
                   }, (r) {
                     candleList = r;
                   });
