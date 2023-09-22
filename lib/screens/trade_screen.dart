@@ -1,19 +1,40 @@
+import 'package:cypto_pulse/bloc/candle/candle_bloc.dart';
+import 'package:cypto_pulse/bloc/candle/candle_event.dart';
+import 'package:cypto_pulse/bloc/candle/candle_state.dart';
+import 'package:cypto_pulse/data/models/candle.dart';
 import 'package:cypto_pulse/widgets/cached_image_widget.dart';
+import 'package:cypto_pulse/widgets/candle_chart_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class TradeScreen extends StatelessWidget {
+class TradeScreen extends StatefulWidget {
   const TradeScreen({
     super.key,
     required this.imageAddress,
+    required this.id,
     required this.coinName,
     required this.currentPrice,
     required this.changePerDay,
   });
   final String imageAddress;
+  final String id;
   final String coinName;
   final num currentPrice;
   final double changePerDay;
+
+  @override
+  State<TradeScreen> createState() => _TradeScreenState();
+}
+
+class _TradeScreenState extends State<TradeScreen> {
+  @override
+  void initState() {
+    BlocProvider.of<CandleBloc>(context)
+        .add(CandleInitializedDataEvent(id: widget.id));
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -29,7 +50,7 @@ class TradeScreen extends StatelessWidget {
             color: Colors.black,
           ),
           title: Text(
-            coinName,
+            widget.coinName,
             style: const TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 20,
@@ -44,11 +65,11 @@ class TradeScreen extends StatelessWidget {
             SizedBox(
               height: 96.w,
               width: 96.w,
-              child: CachedImage(url: imageAddress),
+              child: CachedImage(url: widget.imageAddress),
             ),
             SizedBox(height: 10.w),
             Text(
-              '\$$currentPrice',
+              '\$${widget.currentPrice}',
               style: const TextStyle(
                 color: Color(0xFF232637),
                 fontSize: 30,
@@ -61,7 +82,7 @@ class TradeScreen extends StatelessWidget {
                 Image.asset('assets/images/increase.png'),
                 const SizedBox(width: 5),
                 Text(
-                  '$changePerDay%',
+                  '${widget.changePerDay}%',
                   textAlign: TextAlign.right,
                   style: const TextStyle(
                     color: Color(0xFF1CBF67),
@@ -72,15 +93,42 @@ class TradeScreen extends StatelessWidget {
               ],
             ),
             SizedBox(height: 15.w),
-            const Row(
+            Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Text('7D'),
-                Text('1M'),
-                Text('3M'),
-                Text('6M'),
-                Text('1Y'),
+                Container(
+                  padding: const EdgeInsets.all(5),
+                  decoration: const ShapeDecoration(
+                    shape: CircleBorder(),
+                    color: Colors.blue,
+                  ),
+                  child: const Text('7D'),
+                ),
+                const Text('1M'),
+                const Text('3M'),
+                const Text('6M'),
+                const Text('1Y'),
               ],
+            ),
+            const Spacer(),
+            BlocBuilder<CandleBloc, CandleState>(
+              builder: (context, state) {
+                if (state is CandleLoadingState) {
+                  return const CircularProgressIndicator();
+                }
+                if (state is CandleResponseState) {
+                  late String errorMessage;
+                  late List<Candle> candleList;
+                  state.candleList.fold((l) {
+                    errorMessage = l;
+                    return Text(errorMessage);
+                  }, (r) {
+                    candleList = r;
+                  });
+                  return CandleChart(candleList: candleList);
+                }
+                return const Text('');
+              },
             ),
             const Spacer(),
             Padding(

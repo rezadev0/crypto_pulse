@@ -8,9 +8,8 @@ abstract class CandleState {}
 class CandleLoadingState extends CandleState {}
 
 class CandleResponseState extends CandleState {
-Either<String,List<Candle>> candleList;
+  Either<String, List<Candle>> candleList;
   CandleResponseState({
     required this.candleList,
   });
-  
 }
