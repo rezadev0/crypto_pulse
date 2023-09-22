@@ -1,8 +1,10 @@
+import 'package:cypto_pulse/bloc/candle/candle_bloc.dart';
 import 'package:cypto_pulse/data/models/coin.dart';
 import 'package:cypto_pulse/screens/trade_screen.dart';
 import 'package:cypto_pulse/widgets/cached_image_widget.dart';
 import 'package:cypto_pulse/widgets/line_chart_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CoinInfoItem extends StatelessWidget {
@@ -67,14 +69,10 @@ class CoinInfoItem extends StatelessWidget {
                   ],
                 ),
                 SizedBox(width: 10.w),
-                GestureDetector(
-                  onTap: () => _goToTradescreen(context, index),
-                  child: Expanded(
-                    child: LineChart(
-                      coinpriceList: coinList[index].filterClosePrices,
-                      isIncreased:
-                          coinList[index].priceChangePercentage_24h > 0,
-                    ),
+                Expanded(
+                  child: LineChart(
+                    coinpriceList: coinList[index].filterClosePrices,
+                    isIncreased: coinList[index].priceChangePercentage_24h > 0,
                   ),
                 ),
                 Column(
@@ -124,11 +122,15 @@ class CoinInfoItem extends StatelessWidget {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => TradeScreen(
-          imageAddress: coinList[index].image,
-          coinName: coinList[index].name,
-          currentPrice: coinList[index].currentPrice,
-          changePerDay: coinList[index].priceChangePercentage_24h,
+        builder: (context) => BlocProvider(
+          create: (context) => CandleBloc(),
+          child: TradeScreen(
+            id: coinList[index].id,
+            imageAddress: coinList[index].image,
+            coinName: coinList[index].name,
+            currentPrice: coinList[index].currentPrice,
+            changePerDay: coinList[index].priceChangePercentage_24h,
+          ),
         ),
       ),
     );
