@@ -1,5 +1,4 @@
 import 'package:cypto_pulse/bloc/home/home_bloc.dart';
-import 'package:cypto_pulse/bloc/home/home_event.dart';
 import 'package:cypto_pulse/bloc/home/home_state.dart';
 import 'package:cypto_pulse/widgets/asset_badge_widget.dart';
 import 'package:cypto_pulse/widgets/coin_info_item_widget.dart';
@@ -11,19 +10,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class HomeScreen extends StatefulWidget {
+class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
-
-  @override
-  State<HomeScreen> createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
-  @override
-  void initState() {
-    BlocProvider.of<HomeBloc>(context).add(HomeResponseEvent());
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {

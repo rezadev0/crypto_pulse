@@ -11,19 +11,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
 
-class MarketScreen extends StatefulWidget {
+class MarketScreen extends StatelessWidget {
   const MarketScreen({super.key});
-
-  @override
-  State<MarketScreen> createState() => _MarketScreenState();
-}
-
-class _MarketScreenState extends State<MarketScreen> {
-  @override
-  void initState() {
-    BlocProvider.of<HomeBloc>(context).add(HomeResponseEvent());
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
