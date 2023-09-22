@@ -18,19 +18,7 @@ class CoinInfoItem extends StatelessWidget {
     return SliverList.builder(
       itemCount: length,
       itemBuilder: (context, index) => GestureDetector(
-        onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => TradeScreen(
-                imageAddress: coinList[index].image,
-                coinName: coinList[index].name,
-                currentPrice: coinList[index].currentPrice,
-                changePerDay: coinList[index].priceChangePercentage_24h,
-              ),
-            ),
-          );
-        },
+        onTap: () => _goToTradescreen(context, index),
         child: Padding(
           padding: EdgeInsets.only(
               left: 21.0.w, top: 10.w, right: 20.w, bottom: 10.w),
@@ -79,10 +67,14 @@ class CoinInfoItem extends StatelessWidget {
                   ],
                 ),
                 SizedBox(width: 10.w),
-                Expanded(
-                  child: LineChart(
-                    coinpriceList: coinList[index].filterClosePrices,
-                    isIncreased: coinList[index].priceChangePercentage_24h > 0,
+                GestureDetector(
+                  onTap: () => _goToTradescreen(context, index),
+                  child: Expanded(
+                    child: LineChart(
+                      coinpriceList: coinList[index].filterClosePrices,
+                      isIncreased:
+                          coinList[index].priceChangePercentage_24h > 0,
+                    ),
                   ),
                 ),
                 Column(
@@ -123,6 +115,20 @@ class CoinInfoItem extends StatelessWidget {
               ],
             ),
           ),
+        ),
+      ),
+    );
+  }
+
+  void _goToTradescreen(BuildContext context, int index) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => TradeScreen(
+          imageAddress: coinList[index].image,
+          coinName: coinList[index].name,
+          currentPrice: coinList[index].currentPrice,
+          changePerDay: coinList[index].priceChangePercentage_24h,
         ),
       ),
     );
