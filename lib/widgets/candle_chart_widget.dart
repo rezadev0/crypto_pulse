@@ -33,9 +33,23 @@ class _CandleChartState extends State<CandleChart> {
       trackballBehavior: _trackballBehavior,
       zoomPanBehavior: _zoomPanBehavior,
       primaryYAxis: NumericAxis(
+        majorTickLines: const MajorTickLines(width: 0),
+        axisLine: const AxisLine(width: 0),
         numberFormat: NumberFormat.simpleCurrency(),
+        labelStyle: const TextStyle(
+          color: Color(0xFF666C8F),
+          fontSize: 12,
+          fontWeight: FontWeight.w500,
+        ),
       ),
       primaryXAxis: DateTimeAxis(
+        majorTickLines: const MajorTickLines(width: 0),
+        axisLine: const AxisLine(width: 0),
+        labelStyle: const TextStyle(
+          color: Color(0xFF666C8F),
+          fontSize: 12,
+          fontWeight: FontWeight.w500,
+        ),
         dateFormat: DateFormat.EEEE(),
         majorGridLines: const MajorGridLines(width: 0),
       ),
