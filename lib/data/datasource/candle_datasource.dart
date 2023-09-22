@@ -13,7 +13,7 @@ class CandleDatasource extends MainCandleDatasoure {
     try {
       var response = await _dio.get('bitcoin/ohlc?vs_currency=usd&days=7');
       List<Candle> cnadleList = response.data
-          .map((candleList) => Candle.fromJson(candleList))
+          .map<Candle>((candleDtat) => Candle.fromJson(candleDtat))
           .toList();
       return cnadleList;
     } catch (e) {
