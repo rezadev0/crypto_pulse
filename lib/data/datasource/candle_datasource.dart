@@ -11,7 +11,7 @@ class CandleDatasource extends MainCandleDatasoure {
   @override
   Future<List<Candle>> getCandles(String id) async {
     try {
-      var response = await _dio.get('bitcoin/ohlc?vs_currency=usd&days=7');
+      var response = await _dio.get('$id/ohlc?vs_currency=usd&days=7');
       List<Candle> cnadleList = response.data
           .map<Candle>((candleDtat) => Candle.fromJson(candleDtat))
           .toList();

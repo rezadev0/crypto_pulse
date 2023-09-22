@@ -5,15 +5,15 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 
 abstract class MainCandleRepository {
-  Future<Either<String, List<Candle>>> getCandles();
+  Future<Either<String, List<Candle>>> getCandles(String id);
 }
 
 class CandleRepository extends MainCandleRepository {
   final MainCandleDatasoure _coinDatasource = getIt.get();
   @override
-  Future<Either<String, List<Candle>>> getCandles() async {
+  Future<Either<String, List<Candle>>> getCandles(id) async {
     try {
-      var response = await _coinDatasource.getCandles('');
+      var response = await _coinDatasource.getCandles(id);
       return right(response);
     } on DioException catch (ex) {
       return left(ex.message!);
