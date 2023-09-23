@@ -130,6 +130,7 @@ class CoinInfoItem extends StatelessWidget {
             coinName: coinList[index].name,
             currentPrice: coinList[index].currentPrice,
             changePerDay: coinList[index].priceChangePercentage_24h,
+            isIncreased: coinList[index].priceChangePercentage_24h>0,
           ),
         ),
       ),

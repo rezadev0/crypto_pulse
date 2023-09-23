@@ -16,12 +16,14 @@ class TradeScreen extends StatefulWidget {
     required this.coinName,
     required this.currentPrice,
     required this.changePerDay,
+    required this.isIncreased,
   });
   final String imageAddress;
   final String id;
   final String coinName;
   final num currentPrice;
   final double changePerDay;
+  final bool isIncreased;
 
   @override
   State<TradeScreen> createState() => _TradeScreenState();
@@ -79,13 +81,19 @@ class _TradeScreenState extends State<TradeScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Image.asset('assets/images/increase.png'),
+                Image.asset(
+                  widget.isIncreased
+                      ? 'assets/images/increase.png'
+                      : 'assets/images/decrease.png',
+                ),
                 const SizedBox(width: 5),
                 Text(
                   '${widget.changePerDay}%',
                   textAlign: TextAlign.right,
-                  style: const TextStyle(
-                    color: Color(0xFF1CBF67),
+                  style: TextStyle(
+                    color: widget.isIncreased
+                        ? const Color(0xFF1CBF67)
+                        : const Color(0xFFD52424),
                     fontSize: 12,
                     fontWeight: FontWeight.w400,
                   ),
@@ -100,9 +108,16 @@ class _TradeScreenState extends State<TradeScreen> {
                   padding: const EdgeInsets.all(5),
                   decoration: const ShapeDecoration(
                     shape: CircleBorder(),
-                    color: Colors.blue,
+                    color: Color(0xFF3F53E8),
                   ),
-                  child: const Text('7D'),
+                  child: const Text(
+                    '7D',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 16,
+                    ),
+                  ),
                 ),
                 const Text('1M'),
                 const Text('3M'),
