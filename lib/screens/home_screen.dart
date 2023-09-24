@@ -117,7 +117,7 @@ class HomeScreen extends StatelessWidget {
                   itemBuilder: (context, index) => const ShimmerCard(),
                 ),
               ],
-              if (state is HomeResponseState) ...[
+              if (state is CoinResponseState) ...[
                 state.coinList.fold(
                   (l) {
                     if (l ==

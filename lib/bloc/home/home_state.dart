@@ -7,9 +7,9 @@ abstract class CoinState {}
 
 class CoinLoadingState extends CoinState {}
 
-class HomeResponseState extends CoinState {
+class CoinResponseState extends CoinState {
   Either<String, List<Coin>> coinList;
-  HomeResponseState({
+  CoinResponseState({
     required this.coinList,
   });
 }

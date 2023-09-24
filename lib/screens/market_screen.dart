@@ -75,7 +75,7 @@ class MarketScreen extends StatelessWidget {
                     )
                   ]
                 ],
-                if (state is HomeResponseState) ...[
+                if (state is CoinResponseState) ...[
                   state.coinList.fold(
                     (l) => const SliverToBoxAdapter(
                       child: Text(''),
@@ -85,7 +85,7 @@ class MarketScreen extends StatelessWidget {
                     ),
                   ),
                 ],
-                if (state is HomeResponseState) ...[
+                if (state is CoinResponseState) ...[
                   state.coinList.fold((l) {
                     if (l ==
                         'The request returned an invalid status code of 429.') {

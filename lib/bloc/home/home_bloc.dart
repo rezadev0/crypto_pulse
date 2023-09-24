@@ -11,7 +11,7 @@ class CoinBloc extends Bloc<CoinEvent, CoinState> {
     on<CoinResponseEvent>((event, emit) async {
       emit(CoinLoadingState());
       var coinList = await _coinRepository.getCoins();
-      emit(HomeResponseState(coinList: coinList));
+      emit(CoinResponseState(coinList: coinList));
     });
     on<CoinSearchEvent>((event, emit) async {
       var coinlist = await _coinRepository.getCoins();
