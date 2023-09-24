@@ -1,12 +1,11 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-abstract class HomeEvent {}
+abstract class CoinEvent {}
 
-class HomeResponseEvent extends HomeEvent {}
+class CoinResponseEvent extends CoinEvent {}
 
-class HomeSearchEvent extends HomeEvent {
+class CoinSearchEvent extends CoinEvent {
   final String query;
-  HomeSearchEvent({
+  CoinSearchEvent({
     required this.query,
   });
-  
 }

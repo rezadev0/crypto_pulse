@@ -35,18 +35,18 @@ class MarketScreen extends StatelessWidget {
           ),
         ),
       ),
-      body: BlocBuilder<HomeBloc, HomeState>(
+      body: BlocBuilder<CoinBloc, CoinState>(
         builder: (context, state) {
           return RefreshIndicator(
             onRefresh: () async {
-              BlocProvider.of<HomeBloc>(context).add(HomeResponseEvent());
+              BlocProvider.of<CoinBloc>(context).add(CoinResponseEvent());
             },
             child: CustomScrollView(
               physics: const BouncingScrollPhysics(),
               slivers: [
                 const SearchCoin(),
                 _getLivePriceTitle(),
-                if (state is HomeResultSearchState) ...[
+                if (state is CoinResultSearchState) ...[
                   if (state.resultCoinList.isNotEmpty) ...[
                     CoinInfoItem(
                       coinList: state.resultCoinList,
@@ -75,7 +75,7 @@ class MarketScreen extends StatelessWidget {
                     )
                   ]
                 ],
-                if (state is HomeResponseState) ...[
+                if (state is CoinResponseState) ...[
                   state.coinList.fold(
                     (l) => const SliverToBoxAdapter(
                       child: Text(''),
@@ -85,7 +85,7 @@ class MarketScreen extends StatelessWidget {
                     ),
                   ),
                 ],
-                if (state is HomeResponseState) ...[
+                if (state is CoinResponseState) ...[
                   state.coinList.fold((l) {
                     if (l ==
                         'The request returned an invalid status code of 429.') {

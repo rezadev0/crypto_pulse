@@ -3,20 +3,20 @@ import 'package:dartz/dartz.dart';
 
 import 'package:cypto_pulse/data/models/coin.dart';
 
-abstract class HomeState {}
+abstract class CoinState {}
 
-class HomeLoadingState extends HomeState {}
+class CoinLoadingState extends CoinState {}
 
-class HomeResponseState extends HomeState {
+class CoinResponseState extends CoinState {
   Either<String, List<Coin>> coinList;
-  HomeResponseState({
+  CoinResponseState({
     required this.coinList,
   });
 }
 
-class HomeResultSearchState extends HomeState {
+class CoinResultSearchState extends CoinState {
   List<Coin> resultCoinList;
-  HomeResultSearchState({
+  CoinResultSearchState({
     required this.resultCoinList,
   });
 }

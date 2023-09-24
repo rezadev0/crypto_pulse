@@ -38,7 +38,7 @@ class HomeScreen extends StatelessWidget {
           ),
         ),
       ),
-      body: BlocBuilder<HomeBloc, HomeState>(
+      body: BlocBuilder<CoinBloc, CoinState>(
         builder: (context, state) {
           return CustomScrollView(
             physics: const BouncingScrollPhysics(),
@@ -112,12 +112,12 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              if (state is HomeLoadingState) ...[
+              if (state is CoinLoadingState) ...[
                 SliverList.builder(
                   itemBuilder: (context, index) => const ShimmerCard(),
                 ),
               ],
-              if (state is HomeResponseState) ...[
+              if (state is CoinResponseState) ...[
                 state.coinList.fold(
                   (l) {
                     if (l ==
