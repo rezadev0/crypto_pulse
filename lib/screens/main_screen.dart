@@ -16,7 +16,7 @@ class _MainScreenState extends State<MainScreen> {
   int selectedBottomNav = 0;
   @override
   void initState() {
-    BlocProvider.of<HomeBloc>(context).add(HomeResponseEvent());
+    BlocProvider.of<CoinBloc>(context).add(CoinResponseEvent());
     super.initState();
   }
 

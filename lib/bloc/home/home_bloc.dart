@@ -5,15 +5,15 @@ import 'package:cypto_pulse/data/models/coin.dart';
 import 'package:cypto_pulse/data/repository/coin_repository.dart';
 import 'package:cypto_pulse/getIt/get_it.dart';
 
-class HomeBloc extends Bloc<HomeEvent, HomeState> {
+class CoinBloc extends Bloc<CoinEvent, CoinState> {
   final MainCoinRepository _coinRepository = getIt.get();
-  HomeBloc() : super(HomeLoadingState()) {
-    on<HomeResponseEvent>((event, emit) async {
-      emit(HomeLoadingState());
+  CoinBloc() : super(CoinLoadingState()) {
+    on<CoinResponseEvent>((event, emit) async {
+      emit(CoinLoadingState());
       var coinList = await _coinRepository.getCoins();
       emit(HomeResponseState(coinList: coinList));
     });
-    on<HomeSearchEvent>((event, emit) async {
+    on<CoinSearchEvent>((event, emit) async {
       var coinlist = await _coinRepository.getCoins();
       List<Coin> coins = [];
       List<Coin> resultSearch = [];
@@ -24,7 +24,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         return element.name.toLowerCase().contains(event.query.toLowerCase());
       }).toList();
 
-      emit(HomeResultSearchState(resultCoinList: resultSearch));
+      emit(CoinResultSearchState(resultCoinList: resultSearch));
     });
   }
 }

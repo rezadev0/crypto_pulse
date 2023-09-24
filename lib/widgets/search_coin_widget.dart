@@ -19,10 +19,10 @@ class SearchCoin extends StatelessWidget {
           child: TextField(
             controller: textController,
             onSubmitted: (value) {
-              BlocProvider.of<HomeBloc>(context)
-                  .add(HomeSearchEvent(query: textController.text));
+              BlocProvider.of<CoinBloc>(context)
+                  .add(CoinSearchEvent(query: textController.text));
               if (value == '') {
-                BlocProvider.of<HomeBloc>(context).add(HomeResponseEvent());
+                BlocProvider.of<CoinBloc>(context).add(CoinResponseEvent());
               }
             },
             onTapOutside: (event) {
