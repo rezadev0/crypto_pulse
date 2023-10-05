@@ -1,5 +1,6 @@
 import 'package:cypto_pulse/bloc/home/home_bloc.dart';
 import 'package:cypto_pulse/getIt/get_it.dart';
+import 'package:cypto_pulse/screens/login_screen.dart';
 import 'package:cypto_pulse/screens/main_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -28,17 +29,18 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
-    return ScreenUtilInit(
+    return const ScreenUtilInit(
       splitScreenMode: true,
       minTextAdapt: true,
-      designSize: const Size(375, 812),
+      designSize: Size(375, 812),
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Crypto Pulse',
-        home: BlocProvider(
-          create: (context) => CoinBloc(),
-          child: const MainScreen(),
-        ),
+        // home: BlocProvider(
+        //   create: (context) => CoinBloc(),
+        //   child: const MainScreen(),
+        // ),
+        home: LoginScreen(),
       ),
     );
   }
