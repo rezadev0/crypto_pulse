@@ -1,3 +1,4 @@
+import 'package:cypto_pulse/widgets/login_bottomsheet.dart';
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -12,19 +13,15 @@ class _LoginScreenState extends State<LoginScreen> {
   void initState() {
     Future.delayed(Duration.zero, () {
       showModalBottomSheet(
-        context: context,
-        isScrollControlled: true,
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(42),
-            topRight: Radius.circular(42),
+          context: context,
+          isScrollControlled: true,
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(42),
+              topRight: Radius.circular(42),
+            ),
           ),
-        ),
-        builder: (_) => Container(
-          color: Colors.red,
-          height: 200,
-        ),
-      );
+          builder: (_) => const LoginBottomSheet());
     });
     super.initState();
   }
