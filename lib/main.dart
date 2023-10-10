@@ -36,10 +36,6 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Crypto Pulse',
-        // home: BlocProvider(
-        //   create: (context) => CoinBloc(),
-        //   child: const MainScreen(),
-        // ),
         home: LoginScreen(),
       ),
     );
