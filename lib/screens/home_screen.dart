@@ -20,6 +20,7 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
+        leading: Container(),
         flexibleSpace: Padding(
           padding: EdgeInsets.symmetric(horizontal: 20.0.w, vertical: 10.h),
           child: Row(
