@@ -1,5 +1,4 @@
 import 'package:cypto_pulse/bloc/home/home_bloc.dart';
-import 'package:cypto_pulse/screens/home_screen.dart';
 import 'package:cypto_pulse/screens/main_screen.dart';
 import 'package:cypto_pulse/widgets/login_form.dart';
 import 'package:cypto_pulse/widgets/register_form.dart';
