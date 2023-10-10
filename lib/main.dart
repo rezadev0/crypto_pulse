@@ -1,4 +1,4 @@
-mport 'package:cypto_pulse/getIt/get_it.dart';
+import 'package:cypto_pulse/getIt/get_it.dart';
 import 'package:cypto_pulse/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
