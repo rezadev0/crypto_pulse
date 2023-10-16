@@ -25,7 +25,7 @@ class RegisterForm extends StatelessWidget {
           ),
         ),
         Padding(
-          padding: EdgeInsets.symmetric(vertical: 5.w),
+          padding: EdgeInsets.symmetric(vertical: 10.w),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(10),
             child: SizedBox(

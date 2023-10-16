@@ -25,7 +25,7 @@ class LoginForm extends StatelessWidget {
           ),
         ),
         Padding(
-          padding: EdgeInsets.symmetric(vertical: 5.w),
+          padding: EdgeInsets.symmetric(vertical: 10.w),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(10),
             child: SizedBox(
@@ -73,11 +73,17 @@ class LoginForm extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 20),
-        const Row(
+        Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            Text('I don\'t have an account'),
-            Icon(Icons.arrow_back_ios_new)
+            Text(
+              'I don\'t have an account',
+              style: TextStyle(
+                color: Colors.grey[500],
+                fontSize: 16,
+              ),
+            ),
+            const Icon(Icons.arrow_back_ios_new)
           ],
         ),
       ],
