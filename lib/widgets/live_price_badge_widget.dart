@@ -21,15 +21,6 @@ class LivePriceBadge extends StatelessWidget {
             child: Container(
               width: 130.w,
               decoration: BoxDecoration(
-                boxShadow: [
-                  BoxShadow(
-                    color: coinList[index].priceChangePercentage_24h > 0
-                        ? const Color(0xff16FF00)
-                        : Colors.red,
-                    blurRadius: 10,
-                    blurStyle: BlurStyle.outer,
-                  ),
-                ],
                 borderRadius: BorderRadius.circular(20),
                 border: Border.all(
                   color: const Color(0xFFD1D7E3).withOpacity(0.65),
