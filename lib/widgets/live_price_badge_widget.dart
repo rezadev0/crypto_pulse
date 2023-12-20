@@ -2,6 +2,7 @@ import 'package:cypto_pulse/data/models/coin.dart';
 import 'package:cypto_pulse/widgets/line_chart_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gradient_borders/box_borders/gradient_box_border.dart';
 
 class LivePriceBadge extends StatelessWidget {
   const LivePriceBadge({super.key, required this.coinList});
@@ -21,21 +22,23 @@ class LivePriceBadge extends StatelessWidget {
             child: Container(
               width: 130.w,
               decoration: BoxDecoration(
-                color: coinList[index].priceChangePercentage_24h > 0
-                    ? const Color(0xffA7FF83)
-                    : const Color(0xffFFCAC8),
-                boxShadow: [
-                  BoxShadow(
-                    color: coinList[index].priceChangePercentage_24h > 0
-                        ? const Color(0xff16FF00)
-                        : Colors.red,
-                    blurRadius: 10,
-                    blurStyle: BlurStyle.outer,
-                  ),
-                ],
                 borderRadius: BorderRadius.circular(20),
-                border: Border.all(
-                  color: const Color(0xFFD1D7E3).withOpacity(0.65),
+                border: GradientBoxBorder(
+                  gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: coinList[index].priceChangePercentage_24h > 0
+                        ? [
+                            const Color(0xff38E54D),
+                            const Color(0xffC1F2B0),
+                            const Color(0xffFBF6EE),
+                          ]
+                        : [
+                            const Color(0xffFF2442),
+                            const Color(0xffFBF6EE),
+                          ],
+                  ),
+                  width: 4,
                 ),
               ),
               child: Column(
