@@ -1,4 +1,5 @@
 import 'package:cypto_pulse/bloc/home/home_bloc.dart';
+import 'package:cypto_pulse/bloc/home/home_event.dart';
 import 'package:cypto_pulse/getIt/get_it.dart';
 import 'package:cypto_pulse/screens/main_screen.dart';
 import 'package:flutter/material.dart';
@@ -21,11 +22,26 @@ void main(List<String> args) {
       statusBarIconBrightness: Brightness.dark,
     ),
   );
-  runApp(const MyApp());
+  runApp(BlocProvider(
+    create: (context) => CoinBloc(),
+    child: const MyApp(),
+  ));
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  @override
+  void initState() {
+    BlocProvider.of<CoinBloc>(context).add(CoinResponseEvent());
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
@@ -38,10 +54,7 @@ class MyApp extends StatelessWidget {
         ),
         debugShowCheckedModeBanner: false,
         title: 'Crypto Pulse',
-        home: BlocProvider(
-          create: (BuildContext context) => CoinBloc(),
-          child: const MainScreen(),
-        ),
+        home: const MainScreen(),
       ),
     );
   }
