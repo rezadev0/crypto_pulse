@@ -28,6 +28,7 @@ class CoinInfoItem extends StatelessWidget {
             padding: EdgeInsets.all(10.w),
             height: 60.w,
             decoration: BoxDecoration(
+              color: Theme.of(context).colorScheme.onPrimary,
               boxShadow: [
                 BoxShadow(
                   color: coinList[index].priceChangePercentage_24h > 0

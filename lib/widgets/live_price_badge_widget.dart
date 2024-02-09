@@ -22,6 +22,7 @@ class LivePriceBadge extends StatelessWidget {
             child: Container(
               width: 130.w,
               decoration: BoxDecoration(
+                color: Theme.of(context).colorScheme.onPrimary,
                 borderRadius: BorderRadius.circular(20),
                 border: GradientBoxBorder(
                   gradient: LinearGradient(
@@ -32,13 +33,25 @@ class LivePriceBadge extends StatelessWidget {
                             const Color(0xff38E54D),
                             const Color(0xffC1F2B0),
                             const Color(0xffFBF6EE),
+                            const Color(0xffFBF6EE),
+                            const Color(0xffFBF6EE),
+                            Colors.white,
+                            Colors.white,
+                            Colors.white,
+                            Colors.white
                           ]
                         : [
                             const Color(0xffFF2442),
                             const Color(0xffFBF6EE),
+                            const Color(0xffFBF6EE),
+                            const Color(0xffFBF6EE),
+                            const Color(0xffFBF6EE),
+                            Colors.white,
+                            Colors.white,
+                            Colors.white,
+                            Colors.white
                           ],
                   ),
-                  width: 4,
                 ),
               ),
               child: Column(
