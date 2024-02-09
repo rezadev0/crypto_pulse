@@ -39,6 +39,7 @@ class _TradeScreenState extends State<TradeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    Color onPrimaryColor = Theme.of(context).colorScheme.onPrimary;
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -150,7 +151,9 @@ class _TradeScreenState extends State<TradeScreen> {
                     onPressed: () {},
                     style: ElevatedButton.styleFrom(
                         backgroundColor:
-                            Theme.of(context).colorScheme.secondary,
+                            Theme.of(context).brightness == Brightness.dark
+                                ? onPrimaryColor
+                                : const Color(0xffFFC0CB),
                         minimumSize: Size(160.w, 56.w)),
                     child: Center(
                       child: Row(
@@ -177,7 +180,9 @@ class _TradeScreenState extends State<TradeScreen> {
                     onPressed: () async {},
                     style: ElevatedButton.styleFrom(
                         backgroundColor:
-                            Theme.of(context).colorScheme.onSecondary,
+                            Theme.of(context).brightness == Brightness.dark
+                                ? onPrimaryColor
+                                : const Color(0xffD0F0C0),
                         minimumSize: Size(160.w, 56.w)),
                     child: Row(
                       children: [

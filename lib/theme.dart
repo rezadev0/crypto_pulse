@@ -12,17 +12,12 @@ class AppTheme {
   static const Color _lightTextColorPrimary = Colors.black;
   static const Color _appbarColorLight = Colors.white;
   static const Color _lightIconColor = Colors.black;
-  static const Color _lightSellbuttonColor = Color(0xffFFC0CB);
-  static const Color _lightBuybuttonColor = Color(0xffD0F0C0);
-
   static const Color _darkPrimaryColor = Color(0xff191D2D);
   static const Color _darkPrimaryVariantColor = Colors.black;
   static const Color _darkOnPrimaryColor = Color(0xff2A2F45);
   static const Color _darkTextColorPrimary = Colors.white;
   static const Color _appbarColorDark = Color(0xff191D2D);
   static const Color _darkIconColor = Colors.white;
-  static const Color _darkSellbuttonColor = Color(0xff2A2F45);
-  static const Color _darkBuybuttonColor = Color(0xff2A2F45);
 
   // *****************
   // Text Style - light
@@ -70,8 +65,6 @@ class AppTheme {
     colorScheme: ColorScheme.light(
       primary: _lightPrimaryColor,
       onPrimary: _lightOnPrimaryColor,
-      secondary: _lightSellbuttonColor,
-      onSecondary: _lightBuybuttonColor,
       primaryContainer: _lightPrimaryVariantColor,
     ),
     textTheme: _lightTextTheme,
@@ -86,8 +79,6 @@ class AppTheme {
     ),
     colorScheme: const ColorScheme.dark(
       primary: _darkPrimaryColor,
-      secondary: _darkSellbuttonColor,
-      onSecondary: _darkBuybuttonColor,
       onPrimary: _darkOnPrimaryColor,
       primaryContainer: _darkPrimaryVariantColor,
     ),

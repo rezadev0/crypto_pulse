@@ -67,8 +67,10 @@ class HomeScreen extends StatelessWidget {
                       const SizedBox(
                         width: double.infinity,
                       ),
-                      Text('\$21,271.00',
-                          style: Theme.of(context).textTheme.displayLarge),
+                      Text(
+                        '\$21,271.00',
+                        style: Theme.of(context).textTheme.displayLarge,
+                      ),
                       const SizedBox(height: 5),
                       const Text(
                         '+173% all time',
@@ -97,11 +99,15 @@ class HomeScreen extends StatelessWidget {
                   padding: EdgeInsets.only(left: 21.w, right: 20.w),
                   child: Row(
                     children: [
-                      const Text(
+                      Text(
                         'Crypto Assets',
+                        style: Theme.of(context).textTheme.bodyLarge,
                       ),
                       const Spacer(),
-                      Image.asset('assets/images/add_icon.png'),
+                      const Icon(
+                        Icons.add,
+                        size: 35,
+                      ),
                     ],
                   ),
                 ),
