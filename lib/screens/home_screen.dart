@@ -1,5 +1,6 @@
 import 'package:cypto_pulse/bloc/home/home_bloc.dart';
 import 'package:cypto_pulse/bloc/home/home_state.dart';
+import 'package:cypto_pulse/theme_switcher.dart';
 import 'package:cypto_pulse/widgets/asset_badge_widget.dart';
 import 'package:cypto_pulse/widgets/coin_info_item_widget.dart';
 import 'package:cypto_pulse/widgets/credit_card_widget.dart';
@@ -9,6 +10,7 @@ import 'package:cypto_pulse/widgets/shimmer_card_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -32,7 +34,12 @@ class HomeScreen extends StatelessWidget {
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
               ),
               const Spacer(),
-              const NotificationBing()
+              GestureDetector(
+                  onTap: () {
+                    Provider.of<ThemeService>(context, listen: false)
+                        .switchTheme();
+                  },
+                  child: const NotificationBing())
             ],
           ),
         ),
@@ -61,10 +68,7 @@ class HomeScreen extends StatelessWidget {
                         width: double.infinity,
                       ),
                       Text('\$21,271.00',
-                          style: Theme.of(context)
-                              .textTheme
-                              .displayLarge
-                      ),
+                          style: Theme.of(context).textTheme.displayLarge),
                       const SizedBox(height: 5),
                       const Text(
                         '+173% all time',
