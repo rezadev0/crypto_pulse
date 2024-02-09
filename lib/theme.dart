@@ -6,21 +6,23 @@ class AppTheme {
   // *****************
   // static colors
   // *****************
-  static final Color _lightPrimaryColor = Colors.blueGrey.shade50;
+  static const Color _lightPrimaryColor = Colors.white;
   static final Color _lightPrimaryVariantColor = Colors.blueGrey.shade800;
-  static final Color _lightOnPrimaryColor = Colors.blueGrey.shade200;
+  static const Color _lightOnPrimaryColor = Colors.white;
   static const Color _lightTextColorPrimary = Colors.black;
-  static const Color _appbarColorLight = Colors.blue;
+  static const Color _appbarColorLight = Colors.white;
+  static const Color _lightIconColor = Colors.black;
+  static const Color _lightSellbuttonColor = Color(0xffFFC0CB);
+  static const Color _lightBuybuttonColor = Color(0xffD0F0C0);
 
   static const Color _darkPrimaryColor = Color(0xff191D2D);
   static const Color _darkPrimaryVariantColor = Colors.black;
-  static final Color _darkOnPrimaryColor = Colors.blueGrey.shade300;
+  static const Color _darkOnPrimaryColor = Color(0xff2A2F45);
   static const Color _darkTextColorPrimary = Colors.white;
   static const Color _appbarColorDark = Color(0xff191D2D);
-
-  static const Color _iconColor = Colors.white;
-
-  static const Color _accentColor = Color.fromRGBO(74, 217, 217, 1);
+  static const Color _darkIconColor = Colors.white;
+  static const Color _darkSellbuttonColor = Color(0xff2A2F45);
+  static const Color _darkBuybuttonColor = Color(0xff2A2F45);
 
   // *****************
   // Text Style - light
@@ -63,11 +65,13 @@ class AppTheme {
   static final ThemeData lightTheme = ThemeData(
     scaffoldBackgroundColor: _lightPrimaryColor,
     appBarTheme: const AppBarTheme(
-        color: _appbarColorLight, iconTheme: IconThemeData(color: _iconColor)),
+        color: _appbarColorLight,
+        iconTheme: IconThemeData(color: _lightIconColor)),
     colorScheme: ColorScheme.light(
       primary: _lightPrimaryColor,
       onPrimary: _lightOnPrimaryColor,
-      secondary: _accentColor,
+      secondary: _lightSellbuttonColor,
+      onSecondary: _lightBuybuttonColor,
       primaryContainer: _lightPrimaryVariantColor,
     ),
     textTheme: _lightTextTheme,
@@ -78,11 +82,12 @@ class AppTheme {
     scaffoldBackgroundColor: _darkPrimaryColor,
     appBarTheme: const AppBarTheme(
       color: _appbarColorDark,
-      iconTheme: IconThemeData(color: _iconColor),
+      iconTheme: IconThemeData(color: _darkIconColor),
     ),
-    colorScheme: ColorScheme.dark(
+    colorScheme: const ColorScheme.dark(
       primary: _darkPrimaryColor,
-      secondary: _accentColor,
+      secondary: _darkSellbuttonColor,
+      onSecondary: _darkBuybuttonColor,
       onPrimary: _darkOnPrimaryColor,
       primaryContainer: _darkPrimaryVariantColor,
     ),
