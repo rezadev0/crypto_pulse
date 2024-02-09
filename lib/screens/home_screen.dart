@@ -16,9 +16,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.white,
         elevation: 0,
         leading: Container(),
         flexibleSpace: Padding(
@@ -56,22 +54,19 @@ class HomeScreen extends StatelessWidget {
                     top: 23.0.h,
                     left: 21.0.w,
                   ),
-                  child: const Column(
+                  child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      SizedBox(
+                      const SizedBox(
                         width: double.infinity,
                       ),
-                      Text(
-                        '\$21,271.00',
-                        style: TextStyle(
-                          color: Color(0xFF232637),
-                          fontSize: 30,
-                          fontWeight: FontWeight.w800,
-                        ),
+                      Text('\$21,271.00',
+                          style: Theme.of(context)
+                              .textTheme
+                              .displayLarge
                       ),
-                      SizedBox(height: 5),
-                      Text(
+                      const SizedBox(height: 5),
+                      const Text(
                         '+173% all time',
                         style: TextStyle(
                           color: Color(0xFF03B78C),
@@ -91,7 +86,6 @@ class HomeScreen extends StatelessWidget {
                 ),
               ),
               SliverAppBar(
-                backgroundColor: Colors.white,
                 pinned: true,
                 elevation: 0,
                 toolbarHeight: 35.h,
@@ -101,11 +95,6 @@ class HomeScreen extends StatelessWidget {
                     children: [
                       const Text(
                         'Crypto Assets',
-                        style: TextStyle(
-                          color: Color(0xFF232637),
-                          fontSize: 18,
-                          fontWeight: FontWeight.w800,
-                        ),
                       ),
                       const Spacer(),
                       Image.asset('assets/images/add_icon.png'),

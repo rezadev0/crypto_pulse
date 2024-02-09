@@ -2,6 +2,7 @@ import 'package:cypto_pulse/bloc/home/home_bloc.dart';
 import 'package:cypto_pulse/bloc/home/home_event.dart';
 import 'package:cypto_pulse/getIt/get_it.dart';
 import 'package:cypto_pulse/screens/main_screen.dart';
+import 'package:cypto_pulse/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -49,6 +50,8 @@ class _MyAppState extends State<MyApp> {
       minTextAdapt: true,
       designSize: const Size(375, 812),
       child: MaterialApp(
+        themeMode: ThemeMode.dark,
+        darkTheme: AppTheme.darkTheme,
         theme: ThemeData(
           useMaterial3: false,
         ),

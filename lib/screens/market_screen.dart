@@ -17,9 +17,7 @@ class MarketScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.white,
         elevation: 0,
         leading: Container(),
         flexibleSpace: Padding(
@@ -46,7 +44,7 @@ class MarketScreen extends StatelessWidget {
               physics: const BouncingScrollPhysics(),
               slivers: [
                 const SearchCoin(),
-                _getLivePriceTitle(),
+                _getLivePriceTitle(context),
                 if (state is CoinResultSearchState) ...[
                   if (state.resultCoinList.isNotEmpty) ...[
                     CoinInfoItem(
@@ -113,17 +111,13 @@ class MarketScreen extends StatelessWidget {
     );
   }
 
-  SliverToBoxAdapter _getLivePriceTitle() {
+  SliverToBoxAdapter _getLivePriceTitle(BuildContext context) {
     return SliverToBoxAdapter(
       child: Padding(
         padding: EdgeInsets.only(top: 16.w, right: 20.w, left: 20.w),
-        child: const Text(
+        child: Text(
           'Live Price',
-          style: TextStyle(
-            color: Color(0xFF232637),
-            fontSize: 18,
-            fontWeight: FontWeight.w800,
-          ),
+          style: Theme.of(context).textTheme.bodyLarge,
         ),
       ),
     );

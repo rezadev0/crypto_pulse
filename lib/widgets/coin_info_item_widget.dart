@@ -26,7 +26,7 @@ class CoinInfoItem extends StatelessWidget {
               left: 21.0.w, top: 10.w, right: 20.w, bottom: 10.w),
           child: Container(
             padding: EdgeInsets.all(10.w),
-            height: 70,
+            height: 60.w,
             decoration: BoxDecoration(
               boxShadow: [
                 BoxShadow(
@@ -52,11 +52,11 @@ class CoinInfoItem extends StatelessWidget {
                   children: [
                     Text(
                       coinList[index].name,
-                      style: const TextStyle(
-                        color: Color(0xFF232637),
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                      ),
+                      // style: const TextStyle(
+                      //   color: Color(0xFF232637),
+                      //   fontSize: 16,
+                      //   fontWeight: FontWeight.w600,
+                      // ),
                     ),
                     Text(
                       '${coinList[index].rank} ${coinList[index].symbol}',
@@ -82,11 +82,11 @@ class CoinInfoItem extends StatelessWidget {
                     Text(
                       '\$${coinList[index].currentPrice.toStringAsFixed(6)}',
                       textAlign: TextAlign.right,
-                      style: const TextStyle(
-                        color: Color(0xFF232637),
-                        fontSize: 16,
-                        fontWeight: FontWeight.w400,
-                      ),
+                      // style: const TextStyle(
+                      //   color: Color(0xFF232637),
+                      //   fontSize: 16,
+                      //   fontWeight: FontWeight.w400,
+                      // ),
                     ),
                     Row(
                       children: [
@@ -130,7 +130,7 @@ class CoinInfoItem extends StatelessWidget {
             coinName: coinList[index].name,
             currentPrice: coinList[index].currentPrice,
             changePerDay: coinList[index].priceChangePercentage_24h,
-            isIncreased: coinList[index].priceChangePercentage_24h>0,
+            isIncreased: coinList[index].priceChangePercentage_24h > 0,
           ),
         ),
       ),
