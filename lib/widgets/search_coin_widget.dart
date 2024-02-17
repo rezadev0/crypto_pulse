@@ -39,14 +39,17 @@ class SearchCoin extends StatelessWidget {
                 color: Color(0xff747E98),
               ),
               filled: true,
-              fillColor: const Color(0xFFF2F2F6),
+              fillColor: Theme.of(context).brightness == Brightness.dark
+                  ? Theme.of(context).colorScheme.onPrimary
+                  : const Color(0xFFF2F2F6),
               enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(12),
-                borderSide: const BorderSide(
-                  color: Color(0xFFF2F2F6),
-                  width: 1,
-                ),
-              ),
+                  borderRadius: BorderRadius.circular(12),
+                  borderSide: BorderSide(
+                    width: 1,
+                    color: Theme.of(context).brightness == Brightness.dark
+                        ? Theme.of(context).colorScheme.onPrimary
+                        : const Color(0xFFF2F2F6),
+                  )),
               focusColor: Colors.black12,
               focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(12),

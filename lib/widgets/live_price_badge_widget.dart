@@ -22,6 +22,7 @@ class LivePriceBadge extends StatelessWidget {
             child: Container(
               width: 130.w,
               decoration: BoxDecoration(
+                color: Theme.of(context).colorScheme.onPrimary,
                 borderRadius: BorderRadius.circular(20),
                 border: GradientBoxBorder(
                   gradient: LinearGradient(
@@ -32,13 +33,25 @@ class LivePriceBadge extends StatelessWidget {
                             const Color(0xff38E54D),
                             const Color(0xffC1F2B0),
                             const Color(0xffFBF6EE),
+                            const Color(0xffFBF6EE),
+                            const Color(0xffFBF6EE),
+                            Colors.white,
+                            Colors.white,
+                            Colors.white,
+                            Colors.white
                           ]
                         : [
                             const Color(0xffFF2442),
                             const Color(0xffFBF6EE),
+                            const Color(0xffFBF6EE),
+                            const Color(0xffFBF6EE),
+                            const Color(0xffFBF6EE),
+                            Colors.white,
+                            Colors.white,
+                            Colors.white,
+                            Colors.white
                           ],
                   ),
-                  width: 4,
                 ),
               ),
               child: Column(
@@ -59,7 +72,6 @@ class LivePriceBadge extends StatelessWidget {
                           Text(
                             coinList[index].symbol.toUpperCase(),
                             style: const TextStyle(
-                              color: Colors.black,
                               fontSize: 14,
                               fontWeight: FontWeight.w700,
                             ),
@@ -67,7 +79,6 @@ class LivePriceBadge extends StatelessWidget {
                           Text(
                             coinList[index].name,
                             style: const TextStyle(
-                              color: Color(0xFF666C8F),
                               fontSize: 12,
                               fontWeight: FontWeight.w400,
                             ),
@@ -118,14 +129,13 @@ class LivePriceBadge extends StatelessWidget {
                       ),
                     ],
                   ),
-                  SizedBox(height: 8.w),
+                  SizedBox(height: 5.w),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
                         '\$${coinList[index].currentPrice}',
                         style: const TextStyle(
-                          color: Color(0xFF232637),
                           fontSize: 16,
                           fontWeight: FontWeight.w700,
                         ),

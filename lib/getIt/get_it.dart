@@ -13,9 +13,11 @@ getItInit() {
     ),
   );
   //Datasources
-  getIt.registerSingleton<MainCoinDatasource>(CoinDatasource());
-  getIt.registerSingleton<MainCandleDatasoure>(CandleDatasource());
+  getIt.registerSingleton<MainCoinDatasource>(CoinDatasource(dio: getIt()));
+  getIt.registerSingleton<MainCandleDatasoure>(CandleDatasource(dio: getIt()));
   //Repositories
-  getIt.registerSingleton<MainCoinRepository>(CoinRepository());
-  getIt.registerSingleton<MainCandleRepository>(CandleRepository());
+  getIt.registerSingleton<MainCoinRepository>(
+      CoinRepository(coinDatasource: getIt()));
+  getIt.registerSingleton<MainCandleRepository>(
+      CandleRepository(candleDatasource: getIt()));
 }

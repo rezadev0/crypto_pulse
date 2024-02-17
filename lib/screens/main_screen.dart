@@ -1,10 +1,7 @@
 import 'dart:ui';
-import 'package:cypto_pulse/bloc/home/home_bloc.dart';
-import 'package:cypto_pulse/bloc/home/home_event.dart';
 import 'package:cypto_pulse/screens/home_screen.dart';
 import 'package:cypto_pulse/screens/market_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -15,15 +12,9 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   int selectedBottomNav = 0;
   @override
-  void initState() {
-    BlocProvider.of<CoinBloc>(context).add(CoinResponseEvent());
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       extendBody: true,
       body: SafeArea(
         child: IndexedStack(

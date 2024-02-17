@@ -1,5 +1,6 @@
 import 'package:cypto_pulse/bloc/home/home_bloc.dart';
 import 'package:cypto_pulse/bloc/home/home_state.dart';
+import 'package:cypto_pulse/theme_switcher.dart';
 import 'package:cypto_pulse/widgets/asset_badge_widget.dart';
 import 'package:cypto_pulse/widgets/coin_info_item_widget.dart';
 import 'package:cypto_pulse/widgets/credit_card_widget.dart';
@@ -9,6 +10,7 @@ import 'package:cypto_pulse/widgets/shimmer_card_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -16,9 +18,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.white,
         elevation: 0,
         leading: Container(),
         flexibleSpace: Padding(
@@ -34,7 +34,12 @@ class HomeScreen extends StatelessWidget {
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
               ),
               const Spacer(),
-              const NotificationBing()
+              GestureDetector(
+                  onTap: () {
+                    Provider.of<ThemeService>(context, listen: false)
+                        .switchTheme();
+                  },
+                  child: const NotificationBing())
             ],
           ),
         ),
@@ -56,22 +61,18 @@ class HomeScreen extends StatelessWidget {
                     top: 23.0.h,
                     left: 21.0.w,
                   ),
-                  child: const Column(
+                  child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      SizedBox(
+                      const SizedBox(
                         width: double.infinity,
                       ),
                       Text(
                         '\$21,271.00',
-                        style: TextStyle(
-                          color: Color(0xFF232637),
-                          fontSize: 30,
-                          fontWeight: FontWeight.w800,
-                        ),
+                        style: Theme.of(context).textTheme.displayLarge,
                       ),
-                      SizedBox(height: 5),
-                      Text(
+                      const SizedBox(height: 5),
+                      const Text(
                         '+173% all time',
                         style: TextStyle(
                           color: Color(0xFF03B78C),
@@ -91,7 +92,6 @@ class HomeScreen extends StatelessWidget {
                 ),
               ),
               SliverAppBar(
-                backgroundColor: Colors.white,
                 pinned: true,
                 elevation: 0,
                 toolbarHeight: 35.h,
@@ -99,16 +99,15 @@ class HomeScreen extends StatelessWidget {
                   padding: EdgeInsets.only(left: 21.w, right: 20.w),
                   child: Row(
                     children: [
-                      const Text(
+                      Text(
                         'Crypto Assets',
-                        style: TextStyle(
-                          color: Color(0xFF232637),
-                          fontSize: 18,
-                          fontWeight: FontWeight.w800,
-                        ),
+                        style: Theme.of(context).textTheme.bodyLarge,
                       ),
                       const Spacer(),
-                      Image.asset('assets/images/add_icon.png'),
+                      const Icon(
+                        Icons.add,
+                        size: 35,
+                      ),
                     ],
                   ),
                 ),

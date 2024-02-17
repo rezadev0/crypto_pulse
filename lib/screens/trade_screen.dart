@@ -39,23 +39,20 @@ class _TradeScreenState extends State<TradeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    Color onPrimaryColor = Theme.of(context).colorScheme.onPrimary;
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(
         centerTitle: true,
-        backgroundColor: Colors.white,
         elevation: 0,
         leading: IconButton(
           onPressed: () => Navigator.pop(context),
           icon: const Icon(Icons.arrow_back_ios),
-          color: Colors.black,
         ),
         title: Text(
           widget.coinName,
           style: const TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 20,
-            color: Colors.black,
           ),
         ),
       ),
@@ -72,7 +69,6 @@ class _TradeScreenState extends State<TradeScreen> {
           Text(
             '\$${widget.currentPrice}',
             style: const TextStyle(
-              color: Color(0xFF232637),
               fontSize: 30,
               fontWeight: FontWeight.w800,
             ),
@@ -154,7 +150,10 @@ class _TradeScreenState extends State<TradeScreen> {
                   child: ElevatedButton(
                     onPressed: () {},
                     style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color(0xffFFC0CB),
+                        backgroundColor:
+                            Theme.of(context).brightness == Brightness.dark
+                                ? onPrimaryColor
+                                : const Color(0xffFFC0CB),
                         minimumSize: Size(160.w, 56.w)),
                     child: Center(
                       child: Row(
@@ -180,7 +179,10 @@ class _TradeScreenState extends State<TradeScreen> {
                   child: ElevatedButton(
                     onPressed: () async {},
                     style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color(0xffD0F0C0),
+                        backgroundColor:
+                            Theme.of(context).brightness == Brightness.dark
+                                ? onPrimaryColor
+                                : const Color(0xffD0F0C0),
                         minimumSize: Size(160.w, 56.w)),
                     child: Row(
                       children: [

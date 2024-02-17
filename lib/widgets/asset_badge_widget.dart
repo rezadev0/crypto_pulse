@@ -15,6 +15,7 @@ class AssetBadgeWidget extends StatelessWidget {
       width: 104.w,
       height: 38.h,
       decoration: BoxDecoration(
+        color: Theme.of(context).colorScheme.onPrimary,
         borderRadius: BorderRadius.circular(20),
         boxShadow: [
           BoxShadow(
@@ -65,5 +66,4 @@ class AssetBadgeWidget extends StatelessWidget {
       ),
     );
   }
-  
 }
