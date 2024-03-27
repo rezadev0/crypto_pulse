@@ -70,9 +70,8 @@ class AppTheme {
     textTheme: _lightTextTheme,
     bottomAppBarTheme: const BottomAppBarTheme(color: _appbarColorLight),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
-      selectedItemColor: _lightIconColor, 
-      unselectedItemColor:
-          _lightIconColor.withOpacity(0.5), 
+      selectedItemColor: _lightIconColor,
+      unselectedItemColor: _lightIconColor.withOpacity(0.5),
     ),
   );
 

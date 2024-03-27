@@ -4,7 +4,6 @@ import 'package:cypto_pulse/theme_switcher.dart';
 import 'package:cypto_pulse/widgets/asset_badge_widget.dart';
 import 'package:cypto_pulse/widgets/coin_info_item_widget.dart';
 import 'package:cypto_pulse/widgets/credit_card_widget.dart';
-import 'package:cypto_pulse/widgets/notification_bing_widget.dart';
 import 'package:cypto_pulse/widgets/rate_limiting_error_widget.dart';
 import 'package:cypto_pulse/widgets/shimmer_card_widget.dart';
 import 'package:flutter/material.dart';
@@ -17,6 +16,8 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeService>(context);
+
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -35,11 +36,24 @@ class HomeScreen extends StatelessWidget {
               ),
               const Spacer(),
               GestureDetector(
-                  onTap: () {
-                    Provider.of<ThemeService>(context, listen: false)
-                        .switchTheme();
+                onTap: () {
+                  Provider.of<ThemeService>(context, listen: false)
+                      .switchTheme();
+                },
+                child: Switch(
+                  trackColor: Theme.of(context).brightness == Brightness.dark
+                      ? const MaterialStatePropertyAll(Colors.white)
+                      : null,
+                  trackOutlineColor:
+                      Theme.of(context).brightness == Brightness.dark
+                          ? const MaterialStatePropertyAll(Colors.grey)
+                          : null,
+                  value: themeProvider.isDarkMode,
+                  onChanged: (_) {
+                    themeProvider.switchTheme();
                   },
-                  child: const NotificationBing())
+                ),
+              )
             ],
           ),
         ),
